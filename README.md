@@ -1,4 +1,4 @@
-<p><img src="./public/lock.svg" alt="Auth" width="64px"></p>
+<p><img src="./.github/lock.svg" alt="Auth" width="64px"></p>
 
 # laravel-mgk-auth
 
