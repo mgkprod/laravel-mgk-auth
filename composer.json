@@ -5,7 +5,7 @@
         "mgkprod",
         "mgk-auth"
     ],
-    "homepage": "https://github.com/mgkprod/mgk-auth",
+    "homepage": "https://github.com/mgkprod/laravel-mgk-auth",
     "license": "MIT",
     "type": "library",
     "authors": [
