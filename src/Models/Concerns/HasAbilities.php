@@ -9,10 +9,10 @@ trait HasAbilities
      */
     public function initializeHasAbilities()
     {
-        $this->casts = [
-            ...$this->casts,
-            'abilities' => 'json',
-        ];
+        $this->casts = array_merge(
+            $this->casts,
+            ['abilities' => 'json']
+        );
     }
 
     /**
