@@ -81,6 +81,55 @@ You can also use the `hasAbility` method to check if the user has a specific per
 $user->hasAbility('posts.create');
 ```
 
+#### Use permissions with Vue and Inertia.js
+
+This package contains a javascript function that will check if the user has the required abilities.
+
+First you will need to share the app name and the user abilities in your Inertia app.
+To do this, expose `appName` and `authUser` within your `HandleInertiaRequests` middleware.
+
+```php
+// app/Http/Middleware/HandleInertiaRequests.php
+
+public function share(Request $request): array
+{
+    return array_merge(parent::share($request), [
+        'appName' => config('app.name'),
+        'authUser' => function () use ($request) {
+            if (! $request->user()) {
+                return null;
+            }
+
+            return $request->user()->only('id', 'name', 'email', 'abilities');
+        },
+
+        // ...
+    ]);
+}
+```
+Then, in your `app.js` file, import the `can` function and bind it to Vue.
+
+```js
+import { can } from '../../vendor/mgkprod/laravel-mgk-auth/src/js/can';
+
+// Vue 3.x
+const app = createApp({});
+app.config.globalProperties.can = can;
+
+// Vue 2.x
+Vue.prototype.can = can;
+```
+
+Finally, you can use the `can` function in your Vue components.
+
+```html
+<template>
+    <div v-if="can('posts.create')">
+        <button @click="createPost">Create post</button>
+    </div>
+</template>
+```
+
 ## License
 
 Copyright (c) 2022 Simon Rubuano (@mgkprod) and contributors
