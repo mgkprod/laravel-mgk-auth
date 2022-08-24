@@ -100,7 +100,7 @@ public function share(Request $request): array
                 return null;
             }
 
-            return $request->user()->only('id', 'name', 'email', 'abilities');
+            return $request->user()->only('id', 'name', 'email', 'avatar', 'abilities');
         },
 
         // ...
