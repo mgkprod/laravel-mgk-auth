@@ -90,6 +90,9 @@ class Auth
         $user = User::firstOrCreate([
             'email' => $userData['email'],
         ], [
+            'name' => $userData['name'],
+            'abilities' => $userData['abilities'],
+            'avatar' => $userData['avatar'],
             'password' => 'NO_PASSWORD',
         ]);
 
