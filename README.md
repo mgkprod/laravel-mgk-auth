@@ -19,7 +19,8 @@ composer require mgkprod/mgk-auth
 Your User class' database table should meet these criterias:
 
 - `id` must be an char(24) type field (ulid)
-- `abilities` must be a json type field
+- `abilities` must be a json type field. It will be used to grant abilities to the user.
+- `avatar` must be a varchar(255) type field. It will contain the user's avatar URL.
 
 ## Usage
 

@@ -90,13 +90,12 @@ class Auth
         $user = User::firstOrCreate([
             'email' => $userData['email'],
         ], [
-            'name' => $userData['name'],
-            'abilities' => $userData['abilities'],
             'password' => 'NO_PASSWORD',
         ]);
 
         $user->name = $userData['name'];
         $user->abilities = $userData['abilities'];
+        $user->avatar = $userData['avatar'];
         $user->save();
 
         UserAuthToken::query()
