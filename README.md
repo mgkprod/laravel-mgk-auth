@@ -13,14 +13,27 @@ Log users using [MGK SSO server](https://auth.mgk.dev).
 After adding the [MGK Satis repository](https://composer.mgk.dev) to your composer.json, you can install the package with composer:
 
 ```bash
-composer require mgkprod/mgk-auth
+composer require mgkprod/laravel-mgk-auth
 ```
 
 Your User class' database table should meet these criterias:
 
 - `id` must be an char(24) type field (ulid)
-- `abilities` must be a json type field. It will be used to grant abilities to the user.
 - `avatar` must be a varchar(255) type field. It will contain the user's avatar URL.
+- `abilities` must be a json type field. It will be used to grant abilities to the user.
+
+Eg: 
+```php
+public function up()
+{
+    Schema::create('users', function (Blueprint $table) {
+        // ...
+        $table->char('id', 36)->primary();
+        $table->string('avatar');
+        $table->json('abilities')->nullable();
+    });
+}
+```
 
 ## Usage
 
